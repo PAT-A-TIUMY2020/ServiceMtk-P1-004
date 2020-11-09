@@ -12,15 +12,24 @@ namespace ServiceMtk_P1_20180140004
     public interface IMatematika
     {
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exeption
         /* output->*/
         int Tambah(int a, int b); //method
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exeption
         int Kurang(int a, int b); //input
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exeption
         int Kali(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exeption
         int Bagi(int a, int b);
+
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exeption
         Koordinat TKoordinat(Koordinat a, Koordinat b); //object dari class
 
     }
@@ -41,5 +50,15 @@ namespace ServiceMtk_P1_20180140004
             get { return _y; }
             set { _y = value; }
         }
+    }
+
+    //class MathFault
+    [DataContract]
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
     }
 }
